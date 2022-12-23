@@ -1,9 +1,7 @@
 import '../styles/global.css';
 
-import type { AppProps } from 'next/app';
+import type { TApp } from '@/types';
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Component {...pageProps} />
-);
+const MyApp = ({ Component, pageProps }: TApp) => <Component {...pageProps} />;
 
 export default MyApp;

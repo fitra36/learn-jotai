@@ -1,7 +1,9 @@
+import type { NextPage } from 'next';
+
 import Board from '@/components/Main';
 
 /* eslint-disable @typescript-eslint/no-use-before-define */
-const Index = () => {
+const Index: NextPage = () => {
   return (
     <div className="grid h-screen grid-cols-[300px,1fr]">
       {/* sidebar */}
@@ -14,7 +16,7 @@ const Index = () => {
           <button className="btn-primary btn-sm btn">+</button>
         </div>
         {/* body */}
-        <div className="grid grid-cols-[400px]">
+        <div className="flex gap-x-2">
           <Board />
         </div>
       </div>

@@ -24,7 +24,6 @@ const Board = () => {
     <div className="min-h-[500px] rounded-xl bg-base-200 p-6">
       <div className="mb-5 flex items-center justify-between">
         <h4>Board 1</h4>
-        {/* <button className="btn-primary btn-sm btn">+</button> */}
       </div>
       <div className="mb-5 flex items-center gap-x-2">
         <input
