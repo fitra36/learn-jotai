@@ -1,3 +1,10 @@
+# 1.0.0 (2022-12-23)
+
+
+### Features
+
+* add getLayout ([a0f9047](https://github.com/fitra36/learn-jotai/commit/a0f9047285ddaac4ce6fe0f2505e85e62e1cdbdf))
+
 # [3.6.0](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.5.4...v3.6.0) (2022-12-03)
 
 
