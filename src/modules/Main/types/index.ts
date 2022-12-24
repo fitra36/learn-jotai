@@ -13,6 +13,13 @@ export type TAction =
       };
     }
   | {
+      type: 'reorder-board';
+      payload: {
+        fromIndex: number;
+        toIndex: number;
+      };
+    }
+  | {
       type: 'add-task';
       payload: {
         name: string;

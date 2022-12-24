@@ -4,6 +4,8 @@ import { useRef } from 'react';
 import type { DragListViewProps } from 'react-drag-listview';
 import ReactDragListView from 'react-drag-listview';
 
+import DragIcon from '@/modules/common/icons/DragIcon';
+
 import { kanbanReducerAtom } from '../../atom';
 import type { TBoard } from '../../types';
 import Task from './Task';
@@ -11,18 +13,6 @@ import Task from './Task';
 type TProps = {
   board: TBoard;
 };
-
-// const dragProps = () =>
-//   ({
-//     onDragEnd(fromIndex, toIndex) {
-//       const data = [...that.state.data];
-//       const item = data.splice(fromIndex, 1)[0];
-//       data.splice(toIndex, 0, item);
-//       that.setState({ data });
-//     },
-//     nodeSelector: 'li',
-//     handleSelector: 'a',
-//   } as DragListViewProps);
 
 const Board: FC<TProps> = ({ board }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -59,8 +49,13 @@ const Board: FC<TProps> = ({ board }) => {
 
   return (
     <div className="inline-block min-h-[300px] w-[400px] rounded-xl bg-base-200 p-6 shadow-lg">
-      <div className="mb-5">
-        <h4>{board.name}</h4>
+      <div className="mb-5 flex items-center">
+        <div className="cursor-grab" data-drag="board-handler">
+          <DragIcon className="text-white/70" />
+        </div>
+        <div className="mb-[2px]">
+          <h4>{board.name}</h4>
+        </div>
       </div>
       <div className="mb-5 flex items-center gap-x-2">
         <input

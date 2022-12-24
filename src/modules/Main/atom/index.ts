@@ -29,6 +29,19 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
         ...prev,
         boards: prev.boards.filter((board) => board.id !== action.payload.id),
       };
+    case 'reorder-board': {
+      const { fromIndex, toIndex } = action.payload;
+      const boards = [...prev.boards];
+      const item = boards.splice(fromIndex, 1)[0];
+      if (!item) return prev;
+
+      boards.splice(toIndex, 0, item);
+
+      return {
+        ...prev,
+        boards,
+      };
+    }
     case 'add-task': {
       const { name, boardId } = action.payload;
 
