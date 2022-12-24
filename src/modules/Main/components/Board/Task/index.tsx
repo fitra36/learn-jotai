@@ -14,6 +14,8 @@ const Task: FC<TProps> = ({ boardId, task }) => {
   const [, reducer] = useAtom(kanbanReducerAtom);
 
   const handleRenameTask = (text: string) => {
+    if (text?.length <= 0) return;
+
     reducer({
       type: 'rename-task',
       payload: {
@@ -34,7 +36,7 @@ const Task: FC<TProps> = ({ boardId, task }) => {
           >
             <DragIcon className="text-white/70" />
           </div>
-          <div>
+          <div className="max-w-full">
             <TextEditable text={task.name} onSetText={handleRenameTask} />
           </div>
         </div>

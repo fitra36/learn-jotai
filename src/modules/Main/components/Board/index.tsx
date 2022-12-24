@@ -66,7 +66,7 @@ const Board: FC<TProps> = ({ board }) => {
         <div className="cursor-grab" data-drag="board-handler">
           <DragIcon className="text-white/70" />
         </div>
-        <div className="mb-[2px]">
+        <div className="mb-[2px] max-w-full">
           <TextEditable text={board.name} onSetText={handleChangeBoardName} />
         </div>
       </div>

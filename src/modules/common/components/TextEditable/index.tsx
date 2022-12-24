@@ -116,7 +116,7 @@ const TextEditable: FC<TProps> = ({ text, onSetText }) => {
   }, [setIsInputActive]);
 
   return (
-    <span className="inline-flex items-center" ref={wrapperRef}>
+    <span className="inline-flex max-w-full items-center" ref={wrapperRef}>
       <div
         className={clsx({ hidden: isInputActive }, 'relative inline w-full')}
       >
