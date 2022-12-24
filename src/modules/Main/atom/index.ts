@@ -29,7 +29,7 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
         ...prev,
         boards: prev.boards.filter((board) => board.id !== action.payload.id),
       };
-    case 'add-todo': {
+    case 'add-task': {
       const { name, boardId } = action.payload;
 
       const newTask = {
@@ -54,7 +54,7 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
       };
     }
 
-    case 'delete-todo': {
+    case 'delete-task': {
       const { id, boardId } = action.payload;
 
       const newBoards = prev.boards.map((board) => {
@@ -62,6 +62,31 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
           return {
             ...board,
             tasks: board.tasks.filter((task) => task.id !== id),
+          };
+        }
+
+        return board;
+      });
+
+      return {
+        ...prev,
+        boards: newBoards,
+      };
+    }
+    case 'reorder-task': {
+      const { fromIndex, toIndex, boardId } = action.payload;
+
+      const newBoards = prev.boards.map((board) => {
+        if (board.id === boardId) {
+          const tasks = [...board.tasks];
+          const item = tasks.splice(fromIndex, 1)[0];
+          if (!item) return board;
+
+          tasks.splice(toIndex, 0, item);
+
+          return {
+            ...board,
+            tasks,
           };
         }
 

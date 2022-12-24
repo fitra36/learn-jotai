@@ -1,6 +1,8 @@
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { useRef } from 'react';
+import type { DragListViewProps } from 'react-drag-listview';
+import ReactDragListView from 'react-drag-listview';
 
 import { kanbanReducerAtom } from '../../atom';
 import type { TBoard } from '../../types';
@@ -10,6 +12,18 @@ type TProps = {
   board: TBoard;
 };
 
+// const dragProps = () =>
+//   ({
+//     onDragEnd(fromIndex, toIndex) {
+//       const data = [...that.state.data];
+//       const item = data.splice(fromIndex, 1)[0];
+//       data.splice(toIndex, 0, item);
+//       that.setState({ data });
+//     },
+//     nodeSelector: 'li',
+//     handleSelector: 'a',
+//   } as DragListViewProps);
+
 const Board: FC<TProps> = ({ board }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [, reducer] = useAtom(kanbanReducerAtom);
@@ -18,7 +32,7 @@ const Board: FC<TProps> = ({ board }) => {
     const value = inputRef.current?.value;
     if (value) {
       reducer({
-        type: 'add-todo',
+        type: 'add-task',
         payload: {
           name: value,
           boardId: board.id,
@@ -27,6 +41,20 @@ const Board: FC<TProps> = ({ board }) => {
 
       inputRef.current.value = '';
     }
+  };
+
+  const handleDragEnd: DragListViewProps['onDragEnd'] = (
+    fromIndex,
+    toIndex
+  ) => {
+    reducer({
+      type: 'reorder-task',
+      payload: {
+        fromIndex,
+        toIndex,
+        boardId: board.id,
+      },
+    });
   };
 
   return (
@@ -49,11 +77,17 @@ const Board: FC<TProps> = ({ board }) => {
       <hr className="mb-5 border-t-base-100" />
 
       <div>
-        {board.tasks.map((task) => (
-          <div key={task.id} className="mb-4">
-            <Task task={task} />
-          </div>
-        ))}
+        <ReactDragListView
+          onDragEnd={handleDragEnd}
+          nodeSelector="[data-drag='task-node']"
+          handleSelector="[data-drag='task-handler']"
+        >
+          {board.tasks.map((task) => (
+            <div key={task.id} data-drag="task-node" className="mb-4">
+              <Task task={task} />
+            </div>
+          ))}
+        </ReactDragListView>
       </div>
     </div>
   );

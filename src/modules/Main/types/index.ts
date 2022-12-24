@@ -13,16 +13,24 @@ export type TAction =
       };
     }
   | {
-      type: 'add-todo';
+      type: 'add-task';
       payload: {
         name: string;
         boardId: string;
       };
     }
   | {
-      type: 'delete-todo';
+      type: 'delete-task';
       payload: {
         id: string;
+        boardId: string;
+      };
+    }
+  | {
+      type: 'reorder-task';
+      payload: {
+        fromIndex: number;
+        toIndex: number;
         boardId: string;
       };
     };
