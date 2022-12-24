@@ -22,6 +22,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
     "daisyui": "^2.46.0",
     "jotai": "^1.12.0",
     "next": "^13.0.6",

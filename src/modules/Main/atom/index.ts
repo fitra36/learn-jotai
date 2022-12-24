@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import { atomWithReducer } from 'jotai/utils';
 
 import type { TAction, TBoard, TKanban } from '../types';
 import { uuid } from '../utils';
@@ -6,8 +7,6 @@ import { uuid } from '../utils';
 const initialData: TKanban = {
   boards: [],
 };
-
-export const kanbanAtom = atom(initialData);
 
 export const kanbanReducer = (prev: TKanban, action: TAction) => {
   switch (action.type) {
@@ -35,3 +34,6 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
       throw new Error('unknown action type');
   }
 };
+export const kanbanReducerAtom = atomWithReducer(initialData, kanbanReducer);
+
+export const isOpenModalCreateBoardAtom = atom(false);

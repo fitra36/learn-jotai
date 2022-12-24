@@ -1,56 +1,40 @@
-import { atom, useAtom } from 'jotai';
-import type { FC } from 'react';
-import { useRef } from 'react';
+import { useAtom } from 'jotai';
+import dynamic from 'next/dynamic';
 
-type TTodo = {
-  text: string;
-  isDone: boolean;
-};
-const todoListAtom = atom<TTodo[]>([]);
+import { isOpenModalCreateBoardAtom, kanbanReducerAtom } from '../atom';
+import Board from './Board';
 
-/* eslint-disable @typescript-eslint/no-use-before-define */
-const Board = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [todoList, setTodoList] = useAtom(todoListAtom);
+const DynamicModalCreateBoard = dynamic(() => import('./Board/ModalCreate'));
 
-  const handleAdd = () => {
-    const text = inputRef.current?.value;
-    if (text) {
-      setTodoList((prev) => [...prev, { text, isDone: false }]);
-    }
-  };
+const Kanban = () => {
+  const [kanban] = useAtom(kanbanReducerAtom);
+  const [isOpenModalCreateBoard, setIsOpenModalCreateBoard] = useAtom(
+    isOpenModalCreateBoardAtom
+  );
 
   return (
-    <div className="min-h-[500px] rounded-xl bg-base-200 p-6">
-      <div className="mb-5 flex items-center justify-between">
-        <h4>Board 1</h4>
-      </div>
-      <div className="mb-5 flex items-center gap-x-2">
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Type here"
-          className="input w-full"
-        />
-        <button onClick={handleAdd} className="btn-outline btn-primary btn">
+    <div className="h-full w-full">
+      <div className="mb-10 flex items-center justify-between">
+        <h1 className="text-xl">Kanban</h1>
+        <button
+          className="btn-primary btn-sm btn"
+          onClick={() => {
+            setIsOpenModalCreateBoard(true);
+          }}
+        >
           +
         </button>
       </div>
-      <div>
-        {todoList.map((item, index) => {
-          return <Item key={index} item={item} />;
-        })}
+      <div className="flex h-full w-full gap-x-2 overflow-x-scroll">
+        {kanban.boards.map((board) => (
+          <div key={board.id}>
+            <Board board={board} />
+          </div>
+        ))}
       </div>
+      {isOpenModalCreateBoard && <DynamicModalCreateBoard />}
     </div>
   );
 };
 
-const Item: FC<{ item: TTodo }> = ({ item }) => {
-  return (
-    <div className="card w-full bg-base-100 shadow-xl">
-      <div className="card-body">{item.text}</div>
-    </div>
-  );
-};
-
-export default Board;
+export default Kanban;
