@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import type { DragListViewProps } from 'react-drag-listview';
 import ReactDragListView from 'react-drag-listview';
 
+import TextEditable from '@/modules/common/components/TextEditable';
 import DragIcon from '@/modules/common/icons/DragIcon';
 
 import { kanbanReducerAtom } from '../../atom';
@@ -47,6 +48,18 @@ const Board: FC<TProps> = ({ board }) => {
     });
   };
 
+  const handleChangeBoardName = (text: string) => {
+    if (text?.length <= 0) return;
+
+    reducer({
+      type: 'rename-board',
+      payload: {
+        boardId: board.id,
+        newName: text,
+      },
+    });
+  };
+
   return (
     <div className="inline-block min-h-[300px] w-[400px] rounded-xl bg-base-200 p-6 shadow-lg">
       <div className="mb-5 flex items-center">
@@ -54,7 +67,7 @@ const Board: FC<TProps> = ({ board }) => {
           <DragIcon className="text-white/70" />
         </div>
         <div className="mb-[2px]">
-          <h4>{board.name}</h4>
+          <TextEditable text={board.name} onSetText={handleChangeBoardName} />
         </div>
       </div>
       <div className="mb-5 flex items-center gap-x-2">

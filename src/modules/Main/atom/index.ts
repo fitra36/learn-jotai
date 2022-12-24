@@ -42,6 +42,25 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
         boards,
       };
     }
+    case 'rename-board': {
+      const { boardId, newName } = action.payload;
+
+      const boards = prev.boards.map((board) => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            name: newName,
+          };
+        }
+
+        return board;
+      });
+
+      return {
+        ...prev,
+        boards,
+      };
+    }
     case 'add-task': {
       const { name, boardId } = action.payload;
 

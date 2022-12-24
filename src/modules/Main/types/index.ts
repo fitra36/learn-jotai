@@ -20,6 +20,13 @@ export type TAction =
       };
     }
   | {
+      type: 'rename-board';
+      payload: {
+        boardId: string;
+        newName: string;
+      };
+    }
+  | {
       type: 'add-task';
       payload: {
         name: string;

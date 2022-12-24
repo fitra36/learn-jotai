@@ -1,0 +1,23 @@
+.text_editable_input__active,
+.text_editable_copy__active {
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.text_editable_copy__active {
+  cursor: pointer;
+}
+
+.text_editable_copy__hidden,
+.text_editable_input__hidden {
+  display: none;
+}
+
+.text_editable_input__active {
+  text-align: left;
+}
