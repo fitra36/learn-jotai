@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { useRef } from 'react';
 
-import Modal from '@/modules/common/Modal';
+import Modal from '@/modules/common/components/Modal';
 
 import { isOpenModalCreateBoardAtom, kanbanReducerAtom } from '../../../atom';
 
