@@ -1,7 +1,6 @@
-import Board from '@/components/Main';
+import Board from '@/modules/Main/components';
 import type { TPage } from '@/types';
 
-/* eslint-disable @typescript-eslint/no-use-before-define */
 const Index: TPage = () => {
   return (
     <div>
