@@ -11,7 +11,10 @@ const Task: FC<TProps> = ({ task }) => {
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
         <div className="relative flex">
-          <div className="absolute -left-7" data-drag="task-handler">
+          <div
+            className="absolute -left-7 cursor-grab"
+            data-drag="task-handler"
+          >
             <DragIcon className="text-white/70" />
           </div>
           <div>{task.name}</div>
