@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/fitra36/learn-jotai/compare/v1.0.0...v1.1.0) (2022-12-24)
+
+
+### Features
+
+* add board ([34b783c](https://github.com/fitra36/learn-jotai/commit/34b783c73a17294c3e08cefb32373cdbf131cab2))
+* initial core feature ([08add9b](https://github.com/fitra36/learn-jotai/commit/08add9b96fe837c7767e64c2358f727110536fee))
+
 # 1.0.0 (2022-12-23)
 
 
