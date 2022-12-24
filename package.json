@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@heroicons/react": "^2.0.13",
     "clsx": "^1.2.1",
     "daisyui": "^2.46.0",
     "jotai": "^1.12.0",
