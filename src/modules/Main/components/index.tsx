@@ -29,7 +29,7 @@ const Kanban = () => {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="grid h-full w-full grid-cols-1 grid-rows-[auto,1fr]">
       <div className="mb-10 flex items-center justify-between">
         <h1 className="text-xl">Kanban</h1>
         <button
@@ -46,7 +46,7 @@ const Kanban = () => {
         nodeSelector="[data-drag='board-node']"
         handleSelector="[data-drag='board-handler']"
       >
-        <div className="flex h-full w-full gap-x-5 overflow-x-scroll">
+        <div className="flex h-full w-full gap-x-5 overflow-x-scroll pb-7">
           {kanban.boards.map((board) => (
             <div data-drag="board-node" key={board.id}>
               <Board board={board} />

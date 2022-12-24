@@ -10,7 +10,7 @@ const Main: FC<TProps> = ({ children }) => {
       {/* sidebar */}
       <div className="bg-base-200"></div>
       {/* content */}
-      <div className="w-full overflow-y-auto px-9 py-10">{children}</div>
+      <div className="h-full w-full overflow-y-auto px-9 py-10">{children}</div>
     </div>
   );
 };
