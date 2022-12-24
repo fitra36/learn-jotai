@@ -11,6 +11,20 @@ export type TAction =
       payload: {
         id: string;
       };
+    }
+  | {
+      type: 'add-todo';
+      payload: {
+        name: string;
+        boardId: string;
+      };
+    }
+  | {
+      type: 'delete-todo';
+      payload: {
+        id: string;
+        boardId: string;
+      };
     };
 
 // get type of action type from TAction
@@ -19,13 +33,11 @@ export type TActionType = TAction['type'];
 export type TTask = {
   id: string;
   name: string;
-  order: number;
 };
 
 export type TBoard = {
   id: string;
   name: string;
-  order: number;
   tasks: TTask[];
 };
 

@@ -25,7 +25,7 @@ const Kanban = () => {
           +
         </button>
       </div>
-      <div className="flex h-full w-full gap-x-2 overflow-x-scroll">
+      <div className="flex h-full w-full gap-x-5 overflow-x-scroll">
         {kanban.boards.map((board) => (
           <div key={board.id}>
             <Board board={board} />
