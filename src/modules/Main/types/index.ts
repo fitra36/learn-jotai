@@ -47,6 +47,14 @@ export type TAction =
         toIndex: number;
         boardId: string;
       };
+    }
+  | {
+      type: 'rename-task';
+      payload: {
+        taskId: string;
+        boardId: string;
+        newName: string;
+      };
     };
 
 // get type of action type from TAction

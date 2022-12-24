@@ -92,7 +92,7 @@ const Board: FC<TProps> = ({ board }) => {
         >
           {board.tasks.map((task) => (
             <div key={task.id} data-drag="task-node" className="mb-4">
-              <Task task={task} />
+              <Task boardId={board.id} task={task} />
             </div>
           ))}
         </ReactDragListView>

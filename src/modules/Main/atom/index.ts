@@ -130,6 +130,36 @@ export const kanbanReducer = (prev: TKanban, action: TAction) => {
         boards: newBoards,
       };
     }
+    case 'rename-task': {
+      const { taskId, boardId, newName } = action.payload;
+
+      const boards = prev.boards.map((board) => {
+        if (board.id === boardId) {
+          const tasks = board.tasks.map((task) => {
+            if (task.id === taskId) {
+              return {
+                ...task,
+                name: newName,
+              };
+            }
+
+            return task;
+          });
+
+          return {
+            ...board,
+            tasks,
+          };
+        }
+
+        return board;
+      });
+
+      return {
+        ...prev,
+        boards,
+      };
+    }
 
     default:
       throw new Error('unknown action type');
